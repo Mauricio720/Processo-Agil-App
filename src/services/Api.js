@@ -49,13 +49,14 @@ const apiFetchPost=async (endpoint,body)=>{
 }
 
 const apiFetchGet=async (endpoint,body=[])=>{
-    let token=await AsyncStorage.getItem('token');
+    //let token=await AsyncStorage.getItem('token');
 
-    verifyToken(body,false,token);
+    //verifyToken(body,false,token);
     const res=await fetch(`${BASEAPI+endpoint}?${qs.stringify(body)}`,
     {
         headers: {
             'Accept': 'application/json',
+            'Authorization':'Basic 6uhhQ3oRc/19y4AqLk0BlC+0kGb3f+Hv6gbEiQuQ2E6oSDqkdbn7VUb2rdt495EOAYrJijgzjpGJ7AYkdCJVFme3rwJ8M1/AnG0eLNZUNEM=',
         }
     });
 
@@ -73,5 +74,32 @@ export default {
             }
         );
         return response;
-    }
+    },
+
+    getUsers:async (name)=>{
+        let response=await apiFetchPost('/usuario',{"nome":name});
+        return response;
+    },
+
+    getProfile:async (id)=>{
+        let response=await apiFetchGet('/usuario/',{id});
+        return response;
+    },
+
+    getProcess:async (filterObject={},idUser="")=>{
+        let response=await apiFetchGet('/processos/',filterObject);
+        return response;
+    },
+
+    getMoviments:async (filterObject={})=>{
+       let response=await apiFetchGet('/movimentacoes/',filterObject);
+        return response;
+    },
+
+    getEvents:async (filterObject={})=>{
+        let response=await apiFetchGet('/eventos/',filterObject);
+        return response;
+    },
+
+
 }

@@ -1,4 +1,5 @@
 import React, {createContext,useContext, useReducer} from 'react';
+import MenuReducer from '../reducers/MenuReducer';
 import UserReducer from '../reducers/UserReducer';
 
 const initialState={
@@ -7,7 +8,8 @@ const initialState={
 
 const MainReducer=(state,action)=>{
     return ({
-        user:UserReducer(state.user,action)
+        user:UserReducer(state.user,action),
+        menu:MenuReducer(state.menuSelected,action)
     });
 }
 
@@ -15,6 +17,7 @@ export const StateContext=createContext();
 
 export const StateProvider=({children})=>{
     const [state,dispatch]=useReducer(MainReducer,initialState);
+   
     return (
         <StateContext.Provider value={[state,dispatch]}>
             {children}

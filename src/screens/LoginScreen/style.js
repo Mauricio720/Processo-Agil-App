@@ -1,13 +1,11 @@
 import styled from "styled-components/native";
 
 export default {
-    Container:styled.SafeAreaView`
-        flex: 1;
-        justify-content: center;
-        align-items: center;
-    `,
-
-    Title:styled.Text`
-        
-    `
+   Label:styled.Text`
+        color:white;
+        fontSize:20px;
+        margin-bottom:5px;
+        font-weight:bold;
+   `
+    
 }

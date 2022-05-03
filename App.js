@@ -6,12 +6,12 @@ import { NativeBaseProvider } from "native-base";
 
 export default ()=>{
   return (
-    <StateProvider>
         <NativeBaseProvider>
-            <NavigationContainer>
-                <MainStacks/>
-            </NavigationContainer>  
-        </NativeBaseProvider>
-    </StateProvider>
-  )
+            <StateProvider>
+              <NavigationContainer>
+                  <MainStacks/>
+              </NavigationContainer>  
+            </StateProvider>
+      </NativeBaseProvider>
+    )
 }

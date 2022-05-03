@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/core";
 import React,{useEffect} from "react";
 import { useStateValue } from "../../contexts/StateContext";
 import Style from './style';
+import Api from '../../services/Api';
 
 export default ()=>{
     const navigation=useNavigation();
@@ -14,8 +15,15 @@ export default ()=>{
 
     const checkLogin=async ()=>{
         let token=await AsyncStorage.getItem('token');
+        
         if(token){
-           navigation.reset({
+            let response=await Api.getProfile(token);
+            if(response){
+                dispatch({type:'SET_ID',payload:{id:token}});
+                dispatch({type:'SET_USER',payload:{user:response}});
+            }
+
+            navigation.reset({
                 index:1,
                 routes:[{name:'DrawerStack'}]
             });
@@ -29,7 +37,7 @@ export default ()=>{
 
     return (
         <Style.Container>
-            <Style.LoadingIcon color="#006a9c" size="large"/>
+            <Style.LoadingIcon color="#ff0000" size="large"/>
         </Style.Container>
     )
 }

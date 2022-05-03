@@ -5,6 +5,7 @@ export default {
         flex: 1;
         justify-content: center;
         align-items: center;
+        backgroundColor:white;
     `,
     
     LoadingIcon:styled.ActivityIndicator`
